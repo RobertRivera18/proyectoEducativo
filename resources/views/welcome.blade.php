@@ -220,12 +220,12 @@
 
                 <div class="grid lg:grid-cols-2 gap-6">
                     <div class="flex flex-col items-center border border-white rounded py-4">
-                        <span class="text-3xl font-semibold">22</span>
-                        <span>Cursos</span>
+                        <span class="text-3xl font-semibold">{{$example->where('status',3)->count()}}</span>
+                        <span>Posts Publicados</span>
                     </div>
                     <div class="flex flex-col items-center border border-white rounded py-4">
-                        <span class="text-3xl font-semibold">18</span>
-                        <span>Artículos</span>
+                        <span class="text-3xl font-semibold">{{$example->user->count()}}</span>
+                        <span>Usuarios</span>
                     </div>
                 </div>
             </div>

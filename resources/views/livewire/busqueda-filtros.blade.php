@@ -101,7 +101,7 @@
                     @foreach($posts as $post)
                     <li>
                         <a href="{{route('posts.show', $post)}}" class="block sm:flex w-full">
-                            <figure class=" bg-blue-600 aspect-[16/9] sm:aspect-[4/3] md:aspect-[16/9] sm:w-36 md:w-64">
+                            <figure class="aspect-[16/9] sm:aspect-[4/3] md:aspect-[16/9] sm:w-36 md:w-64">
                                 <img class=" w-full object-cover object-center"
                                     src="{{Storage::url($post->image->url)}}">
                             </figure>

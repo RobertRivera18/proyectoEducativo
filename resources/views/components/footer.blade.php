@@ -1,4 +1,4 @@
-<footer class="divide-y bg-white text-gray-800 mt-32">
+<footer class="divide-y bg-white text-gray-800 mt-8">
 	
     <div class="max-w-7xl sm:px-6 lg:px-8 px-6 flex flex-col justify-between py-10 mx-auto space-y-8 lg:flex-row lg:space-y-0">
     <div class="lg:w-1/3">
