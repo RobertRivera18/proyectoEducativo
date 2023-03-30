@@ -11,7 +11,8 @@ class AppController extends Controller
 {
     public function index()
     {
-        $posts=Post::all()->where('tipo_recurso_id',2);
+        $posts=Post::all()->where('tipo_recurso_id',2)
+                          ->where('status',3);
         $categories=Category::all();
         return view('apps.index',compact('posts','categories'));
     }
@@ -19,7 +20,7 @@ class AppController extends Controller
            
             $similares = Post::where('category_id', $app->category_id)
                 ->where('id', '!=', $app->id)
-                ->where('status', 2)
+                ->where('status', 3)
                 ->where('tipo_recurso_id',2)
                 ->latest('id')
                 ->take(5)

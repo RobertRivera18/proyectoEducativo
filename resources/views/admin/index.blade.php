@@ -48,20 +48,20 @@
                                 use Spatie\Permission\Models\Role;
                                 $cant_roles=Role::count();
                                 @endphp
-                                <h2 class="text-right"><i class="fa fa-users-cog f-left"></i> <span>{{$cant_roles}}</span>
+                                <h2 class="text-right"><i class="fa fa-users-cog f-left"></i>
+                                    <span>{{$cant_roles}}</span>
                                 </h2>
 
                             </div>
                         </div>
 
-
                     </div>
 
                 </div>
             </div>
-
-
-
+        </div>
+        <div class="conmtainer" style="width: 100%; height: 80vh">
+            <canvas id="myChart"></canvas>
         </div>
     </div>
 </div>
@@ -71,8 +71,49 @@
 <link rel="stylesheet" href="/css/admin_custom.css">
 @stop
 
-@section('js')
+@push('js')
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
-    console.log('Hi!'); 
+    var ctx = document.getElementById('myChart').getContext('2d');
+    var myChart = new Chart(ctx, {
+        type: 'radar',
+        data: {
+            labels: {!! json_encode(array_keys($data)) !!},
+            datasets: [{
+                label: 'Posts Realizados',
+                data: {!! json_encode(array_values($data)) !!},
+                backgroundColor: [
+      'rgba(255, 99, 132, 0.2)',
+      'rgba(255, 159, 64, 0.2)',
+      'rgba(255, 205, 86, 0.2)',
+      'rgba(75, 192, 192, 0.2)',
+      'rgba(54, 162, 235, 0.2)',
+      'rgba(153, 102, 255, 0.2)',
+      'rgba(201, 203, 207, 0.2)'
+    ],
+    borderColor: [
+      'rgb(255, 99, 132)',
+      'rgb(255, 159, 64)',
+      'rgb(255, 205, 86)',
+      'rgb(75, 192, 192)',
+      'rgb(54, 162, 235)',
+      'rgb(153, 102, 255)',
+      'rgb(201, 203, 207)'
+    ],
+                borderWidth: 3
+            }]
+        },
+        options: {
+            responsive:true,
+            maintainAspectRatio:false,
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
+        }
+    });
 </script>
-@stop
+@endpush

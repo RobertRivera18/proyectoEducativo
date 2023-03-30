@@ -37,4 +37,6 @@ class CalificationResource extends Component
         $this->reset(['open','comment','rating']);
         $this->emit('render');
         }
+
+    
 }

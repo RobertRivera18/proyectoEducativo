@@ -27,7 +27,7 @@ return new class extends Migration
             $table->unsignedBigInteger('level_id')->nullable();
             $table->unsignedBigInteger('subject_id')->nullable();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            //$table->foreign('level_id')->references('id')->on('levels')->onDelete('set null');
+            $table->foreign('level_id')->references('id')->on('levels')->onDelete('set null');
             //$table->foreign('subject_id')->references('id')->on('subjects')->onDelete('set null');
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
             $table->timestamps();

@@ -74,8 +74,9 @@
                         {{$goal->name}}
                     </li>
                     @empty
-                    <li class=" flex text-gray-900 text-base">Este posts no tiene asignado metas</li>
-                    @endforelse
+                        <li class="flex text-gray-900 text-base"><i class="fa fa-times text-xl mr-2 text-red-500"></i>
+                            Este posts no tiene asignado metas</li>
+                        @endforelse
                 </ul>
             </div>
 
@@ -84,6 +85,18 @@
             <div class="text-gray-700 text-base text-justify">
                 {!!$post->body!!}
             </div>
+
+            <section class=" mt-4 mb-8">
+                <h1 class="font-bold text-2xl">Requisitos</h1>
+                <ul class="list-disc list-inside">
+                    @forelse($post->requirements as $requirement)
+                    <li class="text-gray-700 text-base">{{$requirement->name}}</li>
+                    @empty
+                    <li class="flex text-gray-900 text-base"><i class="fa fa-times text-xl mr-2 text-red-500"></i>
+                        Este posts no tiene asignado Requerimientos</li>
+                    @endforelse
+                </ul>
+            </section>
         <div class="flex flex-col max-w-xl p-8 shadow-sm rounded-xl lg:p-12 dark:bg-gray-900 dark:text-gray-100">
             <div class="flex flex-col w-full">
                 <h2 class="text-3xl font-semibold text-center">Reseña del recurso Educativo</h2>

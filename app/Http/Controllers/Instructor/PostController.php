@@ -137,7 +137,9 @@ class PostController extends Controller
     {
         $post->status = 2;
         $post->save();
-         $post->observation->delete();
+        if($post->observation){
+            $post->observation->delete();
+        }
         return redirect()->route('instructor.posts.edit',$post);
     }
 

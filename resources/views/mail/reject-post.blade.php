@@ -1,15 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Este es un correo electronico de Prueba</h1>
-    <p>EL post <strong>{{$post->name}}</strong> fue reprobado no cumple con los parametros ni requsitos minimos<p>
-        <h3>Motivo del rechazo</h3>
-        {!!$post->observation->body!!}
-</body>
-</html>
+@component('mail::message')
+Hola {{$post->user['name']}} el post que has solicitado la revision con nombre {{$post['name']}} ha sido reprobado porque no cumple con los requisitos necesarios para ser publicado en la Plataforma de Recursos Educativos.
+@component('mail::panel')
+Motivo de Rechazo.
+{!!$post->observation['body']!!}
+Gracias por formar parte de esta comunidad de educadores.
+Correo de contacto:{{$post->user['email']}}.
+@endcomponent
+@endcomponent

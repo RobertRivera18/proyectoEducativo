@@ -35,9 +35,10 @@ class Post extends Model
         }
     }
 
-    public function scopeLevel($query,$level_id){
-        if($level_id){
-            return $query->where('level_id',$level_id);
+    public function scopeLevel($query, $level_id)
+    {
+        if ($level_id) {
+            return $query->where('level_id', $level_id);
         }
     }
     protected $guarded = ['id', 'created_at', 'updated_at'];
@@ -73,11 +74,13 @@ class Post extends Model
         return $this->morphOne(Image::class, 'imageable');
     }
 
-    public function levels(){
+    public function levels()
+    {
         return $this->belongsTo(Level::class);
     }
 
-    public function subjects(){
+    public function subjects()
+    {
         return $this->belongsTo(Subject::class);
     }
 
@@ -85,16 +88,33 @@ class Post extends Model
     {
         return $this->hasMany(Goal::class);
     }
-    
-    public function tipos(){
+
+    public function tipos()
+    {
         return $this->belongsTo(TipoRecurso::class);
     }
-    public function observation(){
+    public function observation()
+    {
         return $this->hasOne('App\Models\Observation');
     }
 
-    public function resource(){
-        return $this->morphOne('App\Models\Resource','resourceable');
+    public function resource()
+    {
+        return $this->morphOne('App\Models\Resource', 'resourceable');
     }
 
+    //Relacion uno a mucho polimorfica de question
+    public function questions()
+    {
+        return $this->morphMany(Question::class, 'questionable');
+    }
+    public function scopeFilter($query,$filters)
+    {
+        $query->when($filters['category'], function ($query,$filters) {
+            $query->whereIn('id', request('category'));
+        })->when(request('order') ?? 'new', function ($query, $order) {
+            $sort = $order === 'new' ? 'desc' : 'asc';
+            $query->orderBy('created_at', $sort);
+        });
+    }
 }

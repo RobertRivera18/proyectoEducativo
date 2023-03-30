@@ -15,7 +15,9 @@
                     <ul>
                         <li>
                             <label>
-                                <input wire:click="$set('category_id', {{$category->id}})" type="checkbox" class="rounded border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">  {{$category->name}}
+                                <input wire:click="$set('category_id', {{$category->id}})" type="checkbox"
+                                    class="rounded border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+                                {{$category->name}}
                             </label>
                         </li>
                     </ul>
@@ -28,7 +30,8 @@
                     <ul>
                         <li>
                             <label>
-                                <input type="checkbox" class="rounded border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+                                <input type="checkbox"
+                                    class="rounded border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
                                 {{$subject->name}}
                             </label>
                         </li>
@@ -42,7 +45,9 @@
                     <ul>
                         <li>
                             <label>
-                                <input type="checkbox" class="rounded border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" wire:click="$set('level_id', {{$level->id}})">
+                                <input type="checkbox"
+                                    class="rounded border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                                    wire:click="$set('level_id', {{$level->id}})">
                                 {{$level->name}}
                             </label>
                         </li>
@@ -59,7 +64,9 @@
                 </div>
 
                 <div>
-                    <button type="submit" class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring focus:ring-gray-300 disabled:opacity-25 transition" x-on:click="apply_filters">
+                    <button type="submit"
+                        class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring focus:ring-gray-300 disabled:opacity-25 transition"
+                        x-on:click="apply_filters">
                         Aplicar filtros
                     </button>
                 </div>
@@ -68,15 +75,35 @@
 
 
             <div class="col-span-3">
-                <div class="ui-widget mb-12">
-                    <input class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm w-full ui-autocomplete-input" id="search" type="text" placeholder="Buscar curso" autocomplete="off" spellcheck="false" data-ms-editor="true">
-                </div>
+                <form class="relative mx-auto text-gray-600" autocomplete="off">
+                    <input
+                        class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm w-full ui-autocomplete-input mb-5"
+                        id="search" type="text" placeholder="Buscar Recurso Educativo" autocomplete="off"
+                        wire:model="search">
+
+                    @if($search)
+                    <ul class="absolute left-0 w-full bg-white mt-1 rounded-lg overflow-hidden">
+                        @forelse($this->results as $result)
+                        <li class="leading-10 px-5 text-sm cursor-pointer hover:bg-blue-300">
+                            <a href="{{route('posts.show',$result)}}">{{$result->name}}</a>
+                        </li>
+                        @empty
+                        <li class="leading-10 px-5 text-sm cursor-pointer hover:bg-blue-300">
+                            No hay ninguna coincidencia :(
+                        </li>
+                        @endforelse
+
+                    </ul>
+                    @endif
+
+                </form>
                 <ul class="space-y-4">
                     @foreach($posts as $post)
                     <li>
                         <a href="{{route('posts.show', $post)}}" class="block sm:flex w-full">
                             <figure class=" bg-blue-600 aspect-[16/9] sm:aspect-[4/3] md:aspect-[16/9] sm:w-36 md:w-64">
-                                <img class=" w-full object-cover object-center" src="{{Storage::url($post->image->url)}}">
+                                <img class=" w-full object-cover object-center"
+                                    src="{{Storage::url($post->image->url)}}">
                             </figure>
                             <div class="lg:flex flex-1 mt-2 sm:mt-0 sm:ml-4 sm:mr-6">
                                 <div class="flex-1">
@@ -87,15 +114,20 @@
                                     <p class="text-gray-500 text-sm mb-1 font-bold">{{$post->user->name}}</p>
                                     <div class="flex items-center mb-1">
                                         <ul class="flex items-center space-x-1 text-xs">
-                                            <li class="mr-1"><i class="fas fa-star text-{{$post->rating>=1 ? 'yellow': 'gray'}}-400"></i>
+                                            <li class="mr-1"><i
+                                                    class="fas fa-star text-{{$post->rating>=1 ? 'yellow': 'gray'}}-400"></i>
                                             </li>
-                                            <li class="mr-1"><i class="fas fa-star text-{{$post->rating>=2 ? 'yellow': 'gray'}}-400"></i>
+                                            <li class="mr-1"><i
+                                                    class="fas fa-star text-{{$post->rating>=2 ? 'yellow': 'gray'}}-400"></i>
                                             </li>
-                                            <li class="mr-1"><i class="fas fa-star text-{{$post->rating>=3 ? 'yellow': 'gray'}}-400"></i>
+                                            <li class="mr-1"><i
+                                                    class="fas fa-star text-{{$post->rating>=3 ? 'yellow': 'gray'}}-400"></i>
                                             </li>
-                                            <li class="mr-1"><i class="fas fa-star text-{{$post->rating>=4 ? 'yellow': 'gray'}}-400"></i>
+                                            <li class="mr-1"><i
+                                                    class="fas fa-star text-{{$post->rating>=4 ? 'yellow': 'gray'}}-400"></i>
                                             </li>
-                                            <li class="mr-1"><i class="fas fa-star text-{{$post->rating==5 ? 'yellow': 'gray'}}-400"></i>
+                                            <li class="mr-1"><i
+                                                    class="fas fa-star text-{{$post->rating==5 ? 'yellow': 'gray'}}-400"></i>
                                             </li>
                                             <p class="text-lg font-bold">{{$post->rating}}</p>
                                         </ul>
@@ -107,27 +139,11 @@
                                 </div>
                             </div>
 
-
-                            <div class="lg:ml-6">
-                                <div class="flex items-center sm:block space-x-2">
-                                    <p class="font-semibold">
-                                        14.99 USD
-                                    </p>
-
-                                    <p class="font-semibold line-through text-gray-500 text-sm">
-                                        29.99 USD
-                                    </p>
-                                </div>
-                            </div>
                         </a>
 
                     </li>
                     @endforeach
-                  
-
                 </ul>
-
-
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-4 mb-8">
                     {{$posts->links()}}
                 </div>
@@ -135,5 +151,3 @@
         </div>
     </div>
 </main>
-
-          

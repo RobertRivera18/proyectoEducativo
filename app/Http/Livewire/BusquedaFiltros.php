@@ -27,12 +27,10 @@ class BusquedaFiltros extends Component
             ->paginate(8);
         return view('livewire.busqueda-filtros', compact('categories', 'levels', 'subjects', 'posts'));
     }
-    public function apply_filters()
-    {
-    }
+    
     public function getResultsProperty(){
         return Post::where('name','LIKE','%'.$this->search.'%')
         ->where('tipo_recurso_id',1)
-        ->where('status',2)->take(4)->get();
+        ->where('status',3)->take(4)->get();
     }
 }

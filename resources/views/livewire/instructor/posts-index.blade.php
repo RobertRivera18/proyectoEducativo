@@ -56,7 +56,7 @@
 
                     <td class="py-4 px-6 whitespace-nowrap">
                         <div class="text-sm text-gray-900 flex items-center">{{$post->rating}}
-                            <ul class="flex text-sm mb-3 ml-2">
+                            <ul class="flex text-sm mb-2 ml-2">
                                 <li class="mr-1"><i
                                         class="fas fa-star text-{{$post->rating>=1 ? 'yellow': 'gray'}}-400"></i>
                                 </li>

@@ -53,9 +53,15 @@
                             <li>
                                 <i class="fas fa-star text-yellow-400"></i>
                             </li>
-                        </ul> <span class="w-16">
-                            {{$ratingsCount[5]}}
-                        </span>
+                        </ul> 
+
+                        @if ($post->reviews->count() > 0)
+                            <span class="w-16">
+                                {{($ratingsCount[5]*100)/$post->reviews->count()}}%
+                            </span>
+                            @else
+                            0%
+                            @endif
                     </li>
                     <li class="flex items-center">
                         <div class="relative pt-1 flex-1">
@@ -82,9 +88,17 @@
                             <li>
                                 <i class="fas fa-star text-gray-600"></i>
                             </li>
-                        </ul> <span class="w-16">
-                            {{$ratingsCount[4]}}
-                        </span>
+
+                        </ul>
+
+                            @if ($post->reviews->count() > 0)
+                            <span class="w-16">
+                                {{($ratingsCount[4]*100)/$post->reviews->count()}}%
+                            </span>
+                            @else
+                            0%
+                            @endif
+                         
                     </li>
                     <li class="flex items-center">
                         <div class="relative pt-1 flex-1">
@@ -111,9 +125,15 @@
                             <li>
                                 <i class="fas fa-star text-gray-600"></i>
                             </li>
-                        </ul> <span class="w-16">
-                            {{$ratingsCount[3]}}
-                        </span>
+                        </ul> 
+
+                        @if ($post->reviews->count() > 0)
+                            <span class="w-16">
+                                {{($ratingsCount[3]*100)/$post->reviews->count()}}%
+                            </span>
+                            @else
+                            0%
+                            @endif
                     </li>
                     <li class="flex items-center">
                         <div class="relative pt-1 flex-1">
@@ -140,9 +160,15 @@
                             <li>
                                 <i class="fas fa-star text-gray-600"></i>
                             </li>
-                        </ul> <span class="w-16">
-                            {{$ratingsCount[2]}}
-                        </span>
+                        </ul> 
+
+                        @if ($post->reviews->count() > 0)
+                            <span class="w-16">
+                                {{($ratingsCount[2]*100)/$post->reviews->count()}}%
+                            </span>
+                            @else
+                            0%
+                            @endif
                     </li>
                     <li class="flex items-center">
                         <div class="relative pt-1 flex-1">
@@ -169,9 +195,15 @@
                             <li>
                                 <i class="fas fa-star text-gray-600"></i>
                             </li>
-                        </ul> <span class="w-16">
-                            {{$ratingsCount[1]}}
-                        </span>
+                        </ul> 
+
+                        @if ($post->reviews->count() > 0)
+                            <span class="w-16">
+                                {{($ratingsCount[1]*100)/$post->reviews->count()}}%
+                            </span>
+                            @else
+                            0%
+                            @endif
                     </li>
 
                 </ul>
@@ -208,10 +240,14 @@
                         alt="">
                 </figure>
 
-
                 <div class="card flex-1">
                     <div class="card-body bg-gray-100 px-2 py-2 rounded-lg">
-                        <p class="text-basic"><b>{{$review->user->name}}</b></p>
+                        <div class="flex justify-between">
+                            <p class="text-basic"><b>{{$review->user->name}}</b></p>
+                            <p class="text-xs"><b>{{$review->created_at->diffForHumans()}}</b></p>
+
+                        </div>
+
                         <div class="flex flex-wrap items-center space-x-2">
                             <ul class="flex text-sm items-center">
                                 <li class="mr-1"><i
@@ -227,31 +263,14 @@
                             </ul>
                         </div>
                         {{$review->comment}}
-                       
+
                     </div>
-                   
+
                 </div>
-                {{-- Dropdown Botones Comnetarios --}}
-                <div>
-                    <x-jet-dropdown>
-                        <x-slot name="trigger">
-                            <button>
-                                <i class="fas fa-ellipsis-v"></i>
-                            </button>
-                        </x-slot>
-                        <x-slot name="content" class="cursor-pointer">
-                            <x-jet-dropdown-link>
-                                Editar
-                            </x-jet-dropdown-link>
-    
-                            <x-jet-dropdown-link>
-                                Eliminar
-                            </x-jet-dropdown-link>
-                        </x-slot>
-                    </x-jet-dropdown>
-                </div>
+
+
             </article>
-           
+
             @endforeach
         </div>
     </div>

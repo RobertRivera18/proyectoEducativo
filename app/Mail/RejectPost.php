@@ -29,6 +29,9 @@ public $post;
      */
     public function build()
     {
-        return $this->view('mail.reject-post');
+        return $this->subject('Mensaje de Rechazo de Publicacion de Post')
+                               ->markdown('mail.reject-post',[
+                               'post'=>$this->post
+        ]);
     }
 }

@@ -1,14 +1,19 @@
 <x-app-layout>
-    <div class="max-w-7xl mx-auto px-2 sm:px-12 lg:px-8 py-8">
+    <div class="max-w-7xl mx-auto px-2 sm:px-12 lg:px-8 py-8 p-4">
 
         <h1 class="text-2xl font-bold text-gray-600">{{$post->name}}</h1>
-        <p class="text-sm">
+        <div class="mb-2">
             @foreach($post->tags as $tag )
-            <a href="{{route('posts.tag',$tag)}}"
-                class="hover:bg-{{$tag->color}}-200 text-{{$tag->color}}-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded  border border-{{$tag->color}}-400 bg-{{$tag->color}}-100 text-black rounded-full">{{$tag->name}}</a>
+            <a href="{{route('posts.tag',$tag)}}">
+                <span
+                    class="bg-indigo-100 text-indigo-800 text-sm font-semibold mr-2 px-2.5 py-0.5 rounded">
+                    {{$tag->name}}
+                </span>
+            </a>
             @endforeach
-        </p>
-    
+        </div>
+        
+
         <ul class="flex items-center text-sm mb-3 ">
             <p class="ml-2 mr-2 font-bold text-base">Calificacion del Recursos Educativo:
                 <li class="mr-1"><i class="fas fa-star text-{{$post->rating>=1 ? 'yellow': 'gray'}}-400"></i></li>
@@ -16,7 +21,8 @@
                 <li class="mr-1"><i class="fas fa-star text-{{$post->rating>=3 ? 'yellow': 'gray'}}-400"></i></li>
                 <li class="mr-1"><i class="fas fa-star text-{{$post->rating>=4 ? 'yellow': 'gray'}}-400"></i></li>
                 <li class="mr-1"><i class="fas fa-star text-{{$post->rating==5 ? 'yellow': 'gray'}}-400"></i></li>
-            <p class="text-2xl font-bold"></p><a class="hover:underline text-indigo-600 mr-2" href="">({{$post->rating}} calificaciones)</a>
+            <p class="text-2xl font-bold"></p><a class="hover:underline text-indigo-600 mr-2" href="">({{$post->rating}}
+                calificaciones)</a>
         </ul>
 
         <div class="text-base text-gray-500 mb-2 text-justify">
@@ -62,7 +68,8 @@
                 </div>
 
                 <h1 class="text-2xl font-bold">Descripcion</h1>
-                <div class="text-base text-gray-800  text-justify">
+                <hr class="mb-2">
+                <div class="text-base text-gray-800  text-justify mx-4">
                     <p class="text-justify">{!!$post->body!!}</p>
                 </div>
 
@@ -79,6 +86,8 @@
                 </section>
 
                 @livewire('reviews-post',['post'=>$post])
+            
+                @livewire('question',['model'=>$post])
             </div>
             {{-- Contenido Relacionado --}}
             <aside class="lg:block">
@@ -93,10 +102,13 @@
                                 <p class="font-bold text-lg mb-1">Detalle del Post:</p>
                                 <ul class="space-y-1">
                                     <li>
-                                        <i class="fas fa-comments inline-block w-6"></i>{{$post->reviews->count()}} reseñas
+                                        <i class="fas fa-comments inline-block w-6"></i>{{$post->reviews->count()}}
+                                        reseñas
                                     </li>
                                     <li>
-                                        <i class="fa fa-bookmark inline-block w-6"></i>Categoria: {{$post->category->name}}</li>
+                                        <i class="fa fa-bookmark inline-block w-6"></i>Categoria:
+                                        {{$post->category->name}}
+                                    </li>
                                     <li><i class="far fa-calendar-alt inline-block w-6"></i> Fecha de Creacion:
                                         {{$post->created_at->format('d/m/y')}}
                                     </li>
@@ -106,13 +118,14 @@
                                     <li>
                                         <i class="fas fa-star inline-block w-6"></i> Calificación: {{$post->rating}}
                                     </li>
+                                    
                                 </ul>
                             </div>
                         </div>
                     </div>
                     <h3 class=" mt-8 text-lg text-gray-700 mb-2 font-bold">Quizas te podria Interesar<h3>
                             @foreach($similares as $similar )
-                            <article class="flex mb-2 bg-white shadow-lg mb-2 rounded-lg card-body px-6 py-4">
+                            <article class="flex mb-2 bg-white shadow-lg rounded-lg card-body px-6 py-4">
                                 @if($similar->image)
                                 <img class=" bg-gray-700 h-32 w-40 object-cover object-center"
                                     src="{{Storage::url($similar->image->url)}}" alt="">
@@ -158,10 +171,12 @@
 
                             @endforeach
             </aside>
-
-
-
+        
         </div>
     </div>
+
     <x-footer />
 </x-app-layout>
+
+
+

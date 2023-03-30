@@ -42,7 +42,7 @@
                   <tr>
                       <td>{{$post->id}}</td>
                       <td>{{$post->name}}</td>
-                      <td>{{$post->user->name}}</td>
+                      <td><i class="fa fa-user"></i> {{$post->user->name}}</td>
                       <td>{{$post->category->name}}</td>
                       <td>
                           <a href="{{route('admin.posts.show',$post)}}" class="btn btn-primary" href="">Revisar</a>

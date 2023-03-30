@@ -53,21 +53,23 @@
             @else
             <img class="bg-sky-900 h-36 w-full object-cover" src="{{asset('img/home/imagenDefault.jpeg')}}" alt="">
             @endif
-
-
             <div class="px-6 py-4">
-                <h1 class="text-lg mb-1 leading-6">
+                <h1 class="text-md mb-1 leading-6">
                     <a href="{{route('posts.show', $example)}}">
                         {{Str::limit($example->name ,30)}}
                     </a>
 
                 </h1>
-                <p class="text-sm mb-2">
+                <div class="mb-2">
                     @foreach($example->tags as $tag )
-                    <a href="{{route('posts.tag',$tag)}}"
-                        class="bg-yellow-100 hover:bg-yellow-200 text-yellow-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-blue-400 border border-yellow-400">{{$tag->name}}</a>
+                    <a href="{{route('posts.tag',$tag)}}">
+                        <span
+                            class="bg-indigo-100 text-indigo-800 text-sm font-semibold mr-2 px-2.5 py-0.5 rounded">
+                            {{$tag->name}}
+                        </span>
+                    </a>
                     @endforeach
-                </p>
+                </div>
                 <p class="text-gray-500 text-sm mb-1 mt-auto">Prof:{{$example->user->name}}</p>
 
                 <ul class="flex text-sm mb-3">

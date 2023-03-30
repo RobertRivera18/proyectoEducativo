@@ -41,7 +41,7 @@
                                 class="p-4 rounded-md resize-none dark:text-gray-100 dark:bg-gray-900"
                                 spellcheck="false" data-ms-editor="true"></textarea>
                             <button wire:click="store" type="button"
-                                class="text-white w-full py-3 mt-8 font-semibold rounded-md text-gray-50 bg-blue-600">Dejar
+                                class=" w-full py-3 mt-8 font-semibold rounded-md text-gray-50 bg-blue-600">Dejar
                                 una reseña</button>
                                 @error('comment')
                                     <span>{{$message}}</span>

@@ -102,14 +102,18 @@
                     <li class="mr-1"><i class="fas fa-star text-{{$app->rating==5 ? 'yellow': 'gray'}}-400"></i></li>
 
                 </ul>
-                <p class="text-sm mb-2">
+                <div class="mb-2">
                     @foreach($app->tags as $tag )
-                    <a href="{{route('posts.tag',$tag)}}"
-                        class="sm:bt-2 inline-block px-3 h-6 bg-{{$tag->color}}-400 text-black rounded-full">{{$tag->name}}</a>
+                    <a href="{{route('posts.tag',$tag)}}">
+                        <span
+                            class="bg-indigo-100 text-indigo-800 text-sm font-semibold mr-2 px-2.5 py-0.5 rounded">
+                            {{$tag->name}}
+                        </span>
+                    </a>
                     @endforeach
-                </p>
+                </div>
 
-                <div class="flex justify-between mt-3 item-center">
+                <div class="flex justify-end mt-3 item-center">
                     <a href="{{route('apps.show', $app)}}"
                         class="px-2 py-1 text-xs font-bold text-white uppercase transition-colors duration-300 transform bg-gray-800 rounded dark:bg-gray-700 hover:bg-gray-700 dark:hover:bg-gray-600 focus:outline-none focus:bg-gray-700 dark:focus:bg-gray-600">Leer
                         Más</a>

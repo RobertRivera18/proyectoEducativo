@@ -30,8 +30,9 @@ class ApprovedPost extends Mailable
      */
     public function build()
     {
-        return $this->markdown('mail.approved-post',[
-            'post'=>$this->post
+        return $this->subject('Mensaje de Aprobacion de Publicacion de Post')
+                     ->markdown('mail.approved-post',[
+                     'post'=>$this->post
         ]);
     }
 }
