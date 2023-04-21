@@ -97,69 +97,11 @@
                     @endforelse
                 </ul>
             </section>
-        <div class="flex flex-col max-w-xl p-8 shadow-sm rounded-xl lg:p-12 dark:bg-gray-900 dark:text-gray-100">
-            <div class="flex flex-col w-full">
-                <h2 class="text-3xl font-semibold text-center">Reseña del recurso Educativo</h2>
-                <div class="flex flex-wrap items-center mt-2 mb-1 space-x-2">
-                    <ul class="flex text-sm mb-3 items-center">
-                        <li class="mr-1"><i class="fas fa-star text-{{$post->rating>=1 ? 'yellow': 'gray'}}-400"></i>
-                        </li>
-                        <li class="mr-1"><i class="fas fa-star text-{{$post->rating>=2 ? 'yellow': 'gray'}}-400"></i>
-                        </li>
-                        <li class="mr-1"><i class="fas fa-star text-{{$post->rating>=3 ? 'yellow': 'gray'}}-400"></i>
-                        </li>
-                        <li class="mr-1"><i class="fas fa-star text-{{$post->rating>=4 ? 'yellow': 'gray'}}-400"></i>
-                        </li>
-                        <li class="mr-1"><i class="fas fa-star text-{{$post->rating==5 ? 'yellow': 'gray'}}-400"></i>
-                        </li>
-                        <span class="text-lg font-bold">{{$post->rating}} de 5</span>
-                    </ul>
-
-                </div>
-                <p class="text-sm dark:text-gray-400">861 global ratings</p>
-                <div class="flex flex-col mt-4">
-                    <div class="flex items-center space-x-1">
-                        <span class="flex-shrink-0 w-12 text-sm">5 star</span>
-                        <div class="flex-1 h-4 overflow-hidden rounded-sm dark:bg-gray-700">
-                            <div class="bg-yellow-300 h-4 w-5/6"></div>
-                        </div>
-                        <span class="flex-shrink-0 w-12 text-sm text-right">83%</span>
-                    </div>
-                    <div class="flex items-center space-x-1">
-                        <span class="flex-shrink-0 w-12 text-sm">4 star</span>
-                        <div class="flex-1 h-4 overflow-hidden rounded-sm dark:bg-gray-700">
-                            <div class="bg-yellow-300 h-4 w-4/6"></div>
-                        </div>
-                        <span class="flex-shrink-0 w-12 text-sm text-right">67%</span>
-                    </div>
-                    <div class="flex items-center space-x-1">
-                        <span class="flex-shrink-0 w-12 text-sm">3 star</span>
-                        <div class="flex-1 h-4 overflow-hidden rounded-sm dark:bg-gray-700">
-                            <div class="bg-yellow-300 h-4 w-3/6"></div>
-                        </div>
-                        <span class="flex-shrink-0 w-12 text-sm text-right">50%</span>
-                    </div>
-                    <div class="flex items-center space-x-1">
-                        <span class="flex-shrink-0 w-12 text-sm">2 star</span>
-                        <div class="flex-1 h-4 overflow-hidden rounded-sm dark:bg-gray-700">
-                            <div class="bg-yellow-300 h-4 w-2/6"></div>
-                        </div>
-                        <span class="flex-shrink-0 w-12 text-sm text-right">33%</span>
-                    </div>
-                    <div class="flex items-center space-x-1">
-                        <span class="flex-shrink-0 w-12 text-sm">1 star</span>
-                        <div class="flex-1 h-4 overflow-hidden rounded-sm dark:bg-gray-700">
-                            <div class="bg-yellow-300 h-4 w-1/6"></div>
-                        </div>
-                        <span class="flex-shrink-0 w-12 text-sm text-right">17%</span>
-                    </div>
-                </div>
-            </div>
-        </div>
+        
     </div>
 
     <div class="order-1 lg:order-2">
-        <section class="card bg-white shadow-lg mb-12 rounded-lg mb-4">
+        <section class="card bg-white shadow-lg mb-12 rounded-lg ">
             <div class="card-body px-6 py-4">
                 <div class="flex items-center">
                     <img class="h-12 w-12 object-cover rounded-full shadow-lg" src="{{$post->user->profile_photo_url}}">
@@ -172,7 +114,7 @@
                     @csrf
                     <button
                         class="block w-full  mt-4 text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2"
-                        type="submit">Aprobar curso</button>
+                        type="submit">Aprobar Post</button>
                 </form>
                 <a class="block w-full  mt-4 text-white bg-red-700 hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2" 
                 href="{{route('admin.posts.observation',$post)}}">Observaciones del Post</a>
