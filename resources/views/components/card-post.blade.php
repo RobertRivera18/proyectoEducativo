@@ -52,7 +52,7 @@
             <a href="{{route('posts.show',$post)}}"
                 class="text-sm block text-center mt-4 bg-gray-800 hover:bg-blue-900 text-white font-bold py-2 px-4 rounded-lg">Leer más</a>
             <span class="flex items-center">
-                <i class="far fa-comment-alt mr-2"></i>
+                <i class="far fa-star mr-2 text-yellow-400"></i>
                 {{$post->reviews->count()}}
             </span>
         </div>

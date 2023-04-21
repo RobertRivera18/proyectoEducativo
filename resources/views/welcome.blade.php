@@ -208,7 +208,7 @@
     <section class="mb-8">
         <div class="grid md:grid-cols-2 bg-gray-500">
             <div class="bg-cover bg-center aspect-w-4 aspect-h-3 lg:aspect-none"
-                style="background-image: url('https://codersfree.com/img/home/resumen.jpeg')">
+                style="background-image: url('{{asset('img/home/Educationvirtual.jpg')}}')">
             </div>
 
             <div class="text-white px-12 py-16 lg:py-28">
