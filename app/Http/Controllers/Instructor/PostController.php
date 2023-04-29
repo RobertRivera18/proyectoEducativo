@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\Instructor;
 
+use App\Http\Controllers\Controller;
+use App\Models\Category;
 use App\Models\Level;
 use App\Models\Post;
-use App\Models\Category;
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use App\Models\Tag;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
@@ -25,10 +25,10 @@ class PostController extends Controller
      */
     public function create()
     {
-        $categories = Category::pluck('name', 'id');
+        $categories = Category::where('type', 1)->pluck('name', 'id');
         $levels = Level::pluck('name', 'id');
         $tags = Tag::all();
-        return view('instructor.posts.create', compact('categories', 'levels','tags'));
+        return view('instructor.posts.create', compact('categories', 'levels', 'tags'));
     }
 
     /**
@@ -51,13 +51,13 @@ class PostController extends Controller
         if ($request->file('file')) {
             $url = Storage::put('public/instructor', $request->file('file'));
             $post->image()->create([
-                'url' => $url
+                'url' => $url,
             ]);
             if ($request->tags) {
                 $post->tags()->attach($request->tags);
             }
         }
-        
+
         return redirect()->route('instructor.posts.index', $post);
     }
 
@@ -83,7 +83,7 @@ class PostController extends Controller
         $categories = Category::pluck('name', 'id');
         $levels = Level::pluck('name', 'id');
         $tags = Tag::all();
-        return view('instructor.posts.edit', compact('post','categories','levels','tags'));
+        return view('instructor.posts.edit', compact('post', 'categories', 'levels', 'tags'));
     }
 
     /**
@@ -101,11 +101,11 @@ class PostController extends Controller
             if ($post->image()) {
                 Storage::delete($post->image->url);
                 $post->image->update([
-                    'url' => $url
+                    'url' => $url,
                 ]);
             } else {
                 $post->image()->create([
-                    'url' => $url
+                    'url' => $url,
                 ]);
             }
         }
@@ -132,18 +132,18 @@ class PostController extends Controller
         return view('instructor.posts.goals', compact('post'));
     }
 
-    
     public function status(Post $post)
     {
         $post->status = 2;
         $post->save();
-        if($post->observation){
+        if ($post->observation) {
             $post->observation->delete();
         }
-        return redirect()->route('instructor.posts.edit',$post);
+        return redirect()->route('instructor.posts.edit', $post);
     }
 
-    public function observation(Post $post){
-     return view('instructor.posts.observation',compact('post'));
+    public function observation(Post $post)
+    {
+        return view('instructor.posts.observation', compact('post'));
     }
 }

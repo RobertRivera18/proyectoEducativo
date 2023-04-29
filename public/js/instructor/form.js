@@ -1,5 +1,6 @@
    //Slug automático
    document.getElementById("name").addEventListener('keyup', slugChange);
+   let url_base = window.location.origin;
 
    function slugChange() {
        name = document.getElementById("name").value;
@@ -18,26 +19,23 @@
    //CKEDITOR
    ClassicEditor
        .create(document.querySelector('#extract'), {
-           toolbar: ['heading', '|', 'bold', 'italic', 'link', 'blockQuote']
-           , heading: {
+           toolbar: ['heading', '|', 'bold', 'italic', 'link', 'blockQuote'],
+           heading: {
                options: [{
-                       model: 'paragraph'
-                       , title: 'Paragraph'
-                       , class: 'ck-heading_paragraph'
-                   }
-                   , {
-                       model: 'heading1'
-                       , view: 'h1'
-                       , title: 'Heading 1'
-                       , class: 'ck-heading_heading1'
-                   }
-                   , {
-                       model: 'heading2'
-                       , view: 'h2'
-                       , title: 'Heading 2'
-                       , class: 'ck-heading_heading2'
-                   }
-               ]
+                   model: 'paragraph',
+                   title: 'Paragraph',
+                   class: 'ck-heading_paragraph'
+               }, {
+                   model: 'heading1',
+                   view: 'h1',
+                   title: 'Heading 1',
+                   class: 'ck-heading_heading1'
+               }, {
+                   model: 'heading2',
+                   view: 'h2',
+                   title: 'Heading 2',
+                   class: 'ck-heading_heading2'
+               }]
            }
        })
        .catch(error => {
@@ -62,3 +60,30 @@
 
        reader.readAsDataURL(file);
    }
+   $(document).ready(function() {
+       function removeSelects() {
+           $('#select2 option').remove();
+       }
+       $('.tipo_recurso_id').change(function() {
+           let tipo = $('#postRadio').prop('checked') ? 1 : 2;
+           let url = `${url_base}/obtener-categorias`;
+           axios.post(url, {
+                   tipo: tipo
+               })
+               .then((res) => {
+                   let { data } = res;
+                   removeSelects()
+                   $('#select2').val("");
+                   $('#select2').append($('<option value="" selected disabled>-- Seleccione Categoria -- </option>'));
+                   data.forEach(cat => {
+                       $('#select2').append($('<option>', {
+                           value: cat.id,
+                           text: cat.name
+                       }));
+                   });
+               }).catch((error) => {
+                   console.log(error);
+               })
+       });
+       $('.tipo_recurso_id').trigger('change');
+   });

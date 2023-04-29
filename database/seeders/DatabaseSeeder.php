@@ -2,14 +2,12 @@
 
 namespace Database\Seeders;
 
-use App\Models\Tag;
-use App\Models\Level;
-use App\Models\Subject;
 use App\Models\Category;
-use Illuminate\Database\Seeder;
+use App\Models\Subject;
+use App\Models\Tag;
 use Database\Seeders\LevelSeeder;
+use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class DatabaseSeeder extends Seeder
 {
@@ -26,10 +24,10 @@ class DatabaseSeeder extends Seeder
         $this->call(UserSeeder::class);
         $this->call(LevelSeeder::class);
         $this->call(TipoRecursoSeeder::class);
-        Category::factory(3)->create();
-        Subject::factory(5)->create();      
+        Category::factory(5)->create();
+        Subject::factory(5)->create();
         Tag::factory(8)->create();
         $this->call(PostSeeder::class);
-       
+
     }
 }

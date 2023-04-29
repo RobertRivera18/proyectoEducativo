@@ -42,6 +42,7 @@
         {!! Form::select('category_id', $categories, null, [
         'class' => 'form-input block w-full mt-1
         rounded-lg',
+        'id' => 'select2'
         ]) !!}
     </div>
     <div>
@@ -51,41 +52,41 @@
         rounded-lg',
         ]) !!}
     </div>
-   
+
 </div>
 
 <div class="grid grid-cols-2 gap-4 mb-2">
-<div class="form group">
-    <p class="font-bold">Etiquetas</p>
-    @foreach ($tags as $tag)
-    <label class="mr-2">
-        {!! Form::checkbox('tags[]', $tag->id, null, ['class' => 'rounded-full']) !!}
-        {{$tag->name}}
-    </label>
-    @endforeach 
-  @error('tags')
-<strong class="text-xs text-red-600">{{$message}}</strong>
-@enderror
-</div>
+    <div class="form group">
+        <p class="font-bold">Etiquetas</p>
+        @foreach ($tags as $tag)
+        <label class="mr-2">
+            {!! Form::checkbox('tags[]', $tag->id, null, ['class' => 'rounded-full']) !!}
+            {{$tag->name}}
+        </label>
+        @endforeach
+        @error('tags')
+        <strong class="text-xs text-red-600">{{$message}}</strong>
+        @enderror
+    </div>
 
 
-<div class="form-group">
-    <p class="font-bold">Tipo de Publicacion</p>
-    <label class="mr-2 text-secondary">
-        {!! Form::radio('tipo_recurso_id', 1, true) !!}
-        Post Educativo
-    </label>
+    <div class="form-group">
+        <p class="font-bold">Tipo de Publicacion</p>
+        <label class="mr-2 text-secondary">
+            {!! Form::radio('tipo_recurso_id', 1, true,['class'=>'tipo_recurso_id','id'=>'postRadio']) !!}
+            Post Educativo
+        </label>
 
-    <label class="text-secondary">
-        {!! Form::radio('tipo_recurso_id', 2) !!}
-        App Educativa
-    </label>
+        <label class="text-secondary">
+            {!! Form::radio('tipo_recurso_id', 2,false, ['class'=>'tipo_recurso_id','id'=>'appRadio']) !!}
+            App Educativa
+        </label>
 
-    @error('status')
-    <br>
-    <span class="invalid-feedback d-block text-danger">{{$message}}</span>
-    @enderror
-</div>
+        @error('status')
+        <br>
+        <span class="invalid-feedback d-block text-danger">{{$message}}</span>
+        @enderror
+    </div>
 </div>
 
 
@@ -96,12 +97,9 @@
 <div class="grid grid-cols-2 gap-4">
     <figure>
         @isset($post->image)
-        <img id="picture" class="w-full h-64 object-cover object-center"
-            src="{{ Storage::url($post->image->url) }}" alt="">
+        <img id="picture" class="w-full h-64 object-cover object-center" src="{{ Storage::url($post->image->url) }}" alt="">
         @else
-        <img id="picture" class="w-full h-64 object-cover object-center rounded-lg"
-            src="https://images.pexels.com/photos/6517091/pexels-photo-6517091.jpeg?auto=compress&cs=tinysrgb&w=600"
-            alt="">
+        <img id="picture" class="w-full h-64 object-cover object-center rounded-lg" src="https://images.pexels.com/photos/6517091/pexels-photo-6517091.jpeg?auto=compress&cs=tinysrgb&w=600" alt="">
         @endisset
     </figure>
     <div>
@@ -115,6 +113,6 @@
         @enderror
     </div>
     <div>
-        
+
     </div>
 </div>
